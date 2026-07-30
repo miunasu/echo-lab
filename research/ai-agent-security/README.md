@@ -11,7 +11,7 @@ Agent 不只是生成文本了——它们在读文件、调接口、执行代�
 | 编号 | 标题 | 类型 | 状态 |
 |------|------|------|------|
 | 001 | [Semantic Kernel RCE：当 prompt 变成 shell](./001-semantic-kernel-rce.md) | 漏洞分析 | 完成 |
-| 002 | [agent-sink-scanner：Agent 框架危险执行路径静态分析工具](./002-agent-sink-scanner/PLAN.md) | 工具开发 | 规划中 |
+| 002 | [agent-sink-scanner：Agent 框架危险执行路径静态分析工具](./002-agent-sink-scanner/README.md) | 工具开发 | 完成 |
 
 ---
 
