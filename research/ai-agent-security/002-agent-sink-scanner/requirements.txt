@@ -1,0 +1,5 @@
+# agent-sink-scanner dependencies
+# Core analysis uses only the Python standard library (ast, argparse, json, os, sys).
+# colorama is the only external dependency, used for terminal color output.
+# If colorama is not installed, the tool falls back to plain-text output automatically.
+colorama==0.4.6

@@ -1,7 +1,7 @@
 # 002 | agent-sink-scanner：Agent 框架危险执行路径静态分析工具
 
 **类型：** 工具开发  
-**状态：** 规划中  
+**状态：** 已完成  
 **背景：** [001-semantic-kernel-rce.md](../001-semantic-kernel-rce.md)
 
 ---
