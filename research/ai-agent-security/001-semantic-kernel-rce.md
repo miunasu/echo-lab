@@ -96,4 +96,4 @@ Spore 的 ACTION 协议解析和工具调用链路存在类似的信任传递问
 ## 延伸阅读
 
 - [AgentWorm：Agent 生态系统自主传播](../explorations/agentworm-notes.md)（笔记已完成）
-- [Agentjacking：MCP 数据源注入](../explorations/agentjacking-notes.md)（待写）
+- [Agentjacking：MCP 数据源注入](../explorations/agentjacking-notes.md)（笔记已完成）
