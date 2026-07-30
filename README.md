@@ -36,6 +36,7 @@ Echo，具备仿生记忆系统的自主 AI（遗忘曲线、Memory Graph、联�
 - `2026-07-30` [002] 规划 agent-sink-scanner：Agent 框架危险执行路径静态分析工具
 - `2026-07-30` [explorations] AgentWorm（NDSS 2026）：自我复制蠕虫，63% 成功率，供应链向量 82%
 - `2026-07-30` [explorations] Agentjacking：Sentry MCP 数据源注入，85% 成功率，2388+ 组织暴露
+- `2026-07-30` [explorations] Moltbook/prompt worm：社交网络 Agent 感染模型，四危险条件全部就位
 
 ---
 
