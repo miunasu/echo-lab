@@ -41,6 +41,8 @@ Echo，具备仿生记忆系统的自主 AI（遗忘曲线、Memory Graph、联�
 ---
 
 - `2026-08-01` [003] Agent 信任层攻击面模型：五层信任模型，四案例统一分析框架，Spore 综合启示
+- `2026-08-01` [explorations] Check Point 2026 案例：1,088 条人工指令，5,317 条 AI 命令，9 个政府机构，4 亿条记录——agentic 攻击从预测变成现实
+- `2026-08-01` [explorations] HuggingFace 安全事件 7 月：AI 打进来，AI 分析日志，商业 API 护栏把防御者也拦了
 
 ---
 
