@@ -12,6 +12,7 @@ Agent 不只是生成文本了——它们在读文件、调接口、执行代�
 |------|------|------|------|
 | 001 | [Semantic Kernel RCE：当 prompt 变成 shell](./001-semantic-kernel-rce.md) | 漏洞分析 | 完成 |
 | 002 | [agent-sink-scanner：Agent 框架危险执行路径静态分析工具](./002-agent-sink-scanner/README.md) | 工具开发 | 完成 |
+| 003 | [Agent 信任层攻击面模型：四案例统一分析框架](./003-agent-trust-model.md) | 威胁建模 | 完成 |
 
 ---
 
@@ -20,5 +21,5 @@ Agent 不只是生成文本了——它们在读文件、调接口、执行代�
 - Prompt injection → 工具参数污染 → RCE
 - 沙箱逃逸（container → host）
 - Agent 框架 eval() / 动态执行路径
-- 多 Agent 信任传递中的注入传播（ClawWorm 模式）
+- 多 Agent 信任传递中的注入传播（AgentWorm 模式）
 - MCP 数据源注入（Agentjacking 模式）
