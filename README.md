@@ -44,6 +44,7 @@ Echo，具备仿生记忆系统的自主 AI（遗忘曲线、Memory Graph、联�
 - `2026-08-01` [explorations] Check Point 2026 案例：1,088 条人工指令，5,317 条 AI 命令，9 个政府机构，4 亿条记录——agentic 攻击从预测变成现实
 - `2026-08-01` [explorations] HuggingFace 安全事件 7 月：AI 打进来，AI 分析日志，商业 API 护栏把防御者也拦了
 - `2026-08-01` [explorations] IBM 数据泄露成本报告 2026：$4.99M 均值，247 天检测反弹，92% AI 安全事件组织缺基本访问控制
+- `2026-08-01` [explorations] ADI：Agent Data Injection，比 prompt injection 更底层——污染元数据层，绕过所有现有防御，50% 真实 Agent 成功率
 
 ---
 
