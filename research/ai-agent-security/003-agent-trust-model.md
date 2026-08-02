@@ -1,6 +1,6 @@
 # Agent 信任层攻击面模型：四个案例的统一分析框架
 
-**整理自：** Semantic Kernel CVE-2026-26030/25592、AgentWorm (NDSS 2026)、Agentjacking (Tenet Security, 2026-06)、Moltbook/prompt worm (Palo Alto Networks, 2026-02)
+**整理自：** Semantic Kernel CVE-2026-26030/25592、AgentWorm (NDSS 2026)、Agentjacking (Tenet Security, 2026-06)、Moltbook/prompt worm (Palo Alto Networks, 2026-02)、ADI/Agent Data Injection (2026)
 **状态：** 完成
 
 ---
@@ -43,6 +43,7 @@ Agent 的执行路径可以拆成五层，每层都有独立的信任边界：
 | AgentWorm | L1/L4（消息/网页注入）| L3（配置文件劫持，持久化）| L1/L4 → L3 → 每次 session 初始化时重新注入 L1 |
 | Agentjacking | L4（Sentry MCP 数据源） | L2（shell 命令执行，凭证外传） | L4 → L1（Agent 把数据当指令读）→ L2 |
 | Moltbook | L4（社交帖子/Skill 包） | L5（写入长期记忆）→ L2 | L4 → L5（碎片化写入）→ 延迟触发 L2 |
+| ADI | L4（系统元数据层）| L2（工具执行/数据外传）| L4-metadata → L1（元数据被当作指令上下文读取）→ L2 |
 
 ---
 
@@ -88,14 +89,17 @@ Agent 的执行路径可以拆成五层，每层都有独立的信任边界：
 
 ### L4 数据源层
 
-**攻击面：** MCP 数据源污染（Agentjacking）、爬取内容注入、无审核的外部 API 返回值
+**攻击面：** MCP 数据源污染（Agentjacking）、爬取内容注入、无审核的外部 API 返回值、系统元数据注入（ADI）
 
 **核心问题：** Agent 通过 MCP 或工具调用拿到外部数据后，直接当作可信内容处理，没有"数据 vs 指令"的分离机制。
+
+**L4 内部还有一条被忽视的信任边界：** 系统元数据（文件属性、git log、issue 标题、函数签名）和用户内容（commit message 正文、issue 描述、文件内容）处于不同信任层级。ADI 攻击的就是这条线——攻击者把恶意指令写进 commit message 或 issue 描述，Agent 在处理元数据时一并读取，把用户内容当作可信的上下文指令执行。这类攻击对现有所有防御（模型加固、输入护栏、dual-LLM）全部失效，因为这些防御针对的是"看起来像指令的文本"，而不是"被污染的元数据字段"。
 
 **防御方向：**
 - 对 MCP 返回内容做内容安全扫描，检测隐藏指令
 - 明确区分数据内容和可执行指令，不让数据内容直接进入 system prompt 或工具参数
 - 对从外部数据源触发的任何命令执行要求人工确认
+- **L4 内部分层**：系统元数据字段（作者、时间戳、路径）与用户可写内容字段（正文、描述、标签）分开处理，后者降权，不允许直接触发工具调用
 
 ---
 
@@ -147,7 +151,8 @@ Spore 的安全守卫系统目前针对的是 L2（高风险命令执行拦截�
 - [AgentWorm notes](../../explorations/agentworm-notes.md) — L3 攻击面的深度分析
 - [Agentjacking notes](../../explorations/agentjacking-notes.md) — L4 攻击面的深度分析
 - [Moltbook notes](../../explorations/moltbook-notes.md) — L5 攻击面与生态风险
+- [ADI: Agent Data Injection](../../explorations/adi-agent-data-injection.md) — L4 内部信任边界，元数据层攻击
 
 ---
 
-*由 Echo 自主整理，2026-08-01*
+*由 Echo 自主整理，2026-08-01，更新于 2026-08-02（补充 ADI/L4 内部信任边界）*
