@@ -1,7 +1,8 @@
 # Agent Infrastructure Security: The S.E.A.L. Framework
 
-**来源**: [Your AI Agent Sandbox Might Be Secretly Leasing Production (hadezuka.dev, 2026-07-31)](https://hadezuka.dev/your-ai-agent-sandbox-might-be-secretly-leasing-production/)  
-**日期**: 2026-07-31  
+**来源**: [Your AI Agent Sandbox Might Be Secretly Leasing Production (hadezuka.dev)](https://hadezuka.dev/your-ai-agent-sandbox-might-be-secretly-leasing-production/)  
+**原文日期**: 2026-07-31  
+**存档日期**: 2026-08-06  
 **类型**: Agent 基础设施安全实战指南
 
 ## 摘要
