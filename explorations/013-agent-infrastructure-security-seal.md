@@ -96,12 +96,110 @@ S.E.A.L. = **Separation of execution planes, Egress-only networking, Auth scoped
 
 ---
 
-## 真实落地案例
+## 策略复用与治理：从临时配置到可审查的环境蓝图
 
-工程团队分享的具体实现：
+S.E.A.L. 框架提供了技术实现指南，但每次临时搭环境、手动配置权限、事后才发现"忘了限制出站网络"——这不是可持续的安全模式。
 
-1. 某开源项目使用 **gVisor sandboxed containers**（专为不可信代码执行设计）
-2. 另一团队配置 **Kata Containers** + 严格 seccomp 过滤器 + 全面禁用 privileged mode
+### Sandbox Kits：可复用的安全策略
+
+**核心思想**：把批准的基础镜像、语言运行时、挂载范围、允许的工具、网络策略、凭证路径编码成"可审查的环境蓝图"（Sandbox Kit）。
+
+Kit 应该像 release input 一样被版本控制、审查、指定负责人。不是每次临时决定"这个 Agent 能访问什么"，而是：
+- 选择预定义的 Kit（如 `python-safe-kit`、`node-readonly-kit`）
+- Kit 已经包含了所有安全约束（只读 FS、egress-only、短期凭证、资源配额）
+- 需要更多权限？提交 PR 修改 Kit 定义，经过审查后合并
+
+**Docker 的 Sandbox Kits 框架**（2026 年推出）：
+- 平台团队发布批准的 Kit 用于常见工作流
+- 将高风险能力排除在默认环境外（如 `/var/run/docker.sock` 挂载、privileged mode）
+- Kit 能否锁定到审查过的版本，授予过多权限时可回滚
+
+### MCP 工具调用网关：独立的 Choke Point
+
+即使 Agent 执行被沙箱隔离，如果它能调用外部工具（发邮件、查 CRM、开工单、改云状态、读客户数据），沙箱边界只是一半的故事。
+
+**工具调用需要自己的认证、授权、日志、撤销机制**：
+- 不应该把工具 API key 直接塞进 Agent 环境变量
+- 应该通过 MCP 网关中介所有外部操作：
+  - Agent 调用工具 → 请求发到 MCP 网关
+  - 网关检查权限（这个 Agent 会话能调用这个工具吗？参数合法吗？）
+  - 网关记录日志（谁、什么时候、调用了什么工具、带什么参数）
+  - 网关转发请求到实际工具，返回结果
+
+---
+
+## 硬件级隔离：最后一道防线
+
+### 为什么容器和进程沙箱不够
+
+**核心问题**：进程级沙箱和容器级隔离都共享宿主内核——一个内核 CVE 就能逃逸。
+
+> "Most AI agent 'sandboxes' are actually litterboxes — they look contained but they're full of 💩."  
+> — Ann W., Edera 团队
+
+**技术风险**：
+- **进程级沙箱**（如 Python subprocess、Node.js child_process）：共享内核、共享网络栈、共享文件系统命名空间
+- **容器级隔离**（Docker、containerd）：虽然有 namespace 和 cgroup，但依然共享内核。2024-2026 年发现的多个容器逃逸 CVE（如 CVE-2024-21626 runc 逃逸）证明容器边界不可信
+
+**真正的沙箱**：每个 Agent 需要自己的内核、自己的 VM、硬件级隔离——被攻陷的 Agent 无法触碰集群中的其他任何东西。
+
+### microVM 技术栈
+
+#### Firecracker（AWS 开源）
+- 专为 serverless 设计的轻量级 VM monitor
+- 基于 KVM，但去掉了大部分 QEMU 设备模拟（只保留 virtio-net、virtio-block）
+- 冷启动 < 125ms，内存开销 < 5MB
+- AWS Lambda 和 Fargate 的底层技术
+
+#### Kata Containers（OpenStack 基金会）
+- 让容器跑在独立 VM 里，但对用户透明（仍用 Docker/K8s API）
+- 每个 pod 跑在独立的轻量级 VM（基于 QEMU/Firecracker/Cloud Hypervisor）
+- 兼容 OCI 标准，可直接替换 runc
+
+#### gVisor（Google 开源）
+- 用户空间内核（user-space kernel），拦截所有系统调用
+- 不是完整 VM，但提供独立的内核接口
+- 性能介于容器和 VM 之间
+
+### 真实产品案例
+
+#### Edera（YC S24）
+- 提供 SaaS 化的 VM 级 Agent 沙箱
+- 两行 K8s 配置，不需要改 Agent 镜像，底层用 VM 隔离
+- 支持多租户场景（每个租户的 Agent 跑在独立 VM 里）
+
+#### IronCurtain（Niels Provos 开源）
+- 单一强制执行 choke point
+- 把"宪法"编译成确定性策略规则（不依赖 LLM 分类器）
+- 凭证完全不在 Agent 可达范围内：容器里是假密钥，代理层交换真密钥
+- 开源地址：[github.com/google/iron-curtain](https://github.com/google/iron-curtain)
+
+#### Vercel Sandbox / Cloudflare Sandboxed
+- SaaS 化的开发环境 / 沙箱
+- 底层可能用 Edera/Firecracker 之类的 VM hypervisor 保证多租户隔离
+- 用户只需要写代码，隔离由平台自动处理
+
+### 成本与收益
+
+**VM 级隔离的代价**：
+- 启动延迟增加（Firecracker 虽然 < 125ms，但仍比容器慢）
+- 内存开销增加（每个 VM 需要独立内核）
+- 运维复杂度增加（需要管理 hypervisor、VM 生命周期）
+
+**但收益是**：
+- 内核 CVE 无法逃逸到 host
+- 一个 Agent 被攻陷不会影响其他 Agent
+- 符合多租户安全要求（SaaS 场景必需）
+
+**何时需要硬件级隔离**：
+- 多租户场景（不同客户的 Agent 跑在同一集群）
+- 高风险操作（Agent 能修改生产状态、访问敏感数据）
+- 合规要求（金融、医疗等行业）
+
+**何时容器够用**：
+- 单租户场景（只有自己团队的 Agent）
+- Agent 权限已严格限制（只读操作、短期凭证、egress-only）
+- 配合 S.E.A.L. 框架使用，风险可控
 
 ### Kubernetes 配置示例
 
@@ -130,11 +228,14 @@ S.E.A.L. = **Separation of execution planes, Egress-only networking, Auth scoped
 
 | 检查项 | 具体操作 |
 |--------|----------|
-| Egress-only | 默认拒绝所有 sandbox worker 网络的入站流量 |
-| Token TTL | 确认所有到达 Agent 的凭证有效期 < 15 分钟 |
+| Sandbox Kit | 环境能否阻止挂载工作区外的写入？ |
+| Egress-only | 出站网络访问是默认拒绝还是至少显式限定范围？ |
+| Token TTL | 密钥是短期的且仅为任务注入？ |
 | Separation | 确认决策代码和执行 runner 分离 |
 | Read-only FS | 尽可能为 worker 基础镜像挂载只读根文件系统 |
 | No privileged | 禁用 Docker/K8s 所有 Agent 工作负载的 privileged mode |
+| Tool Gateway | 平台能否记录哪些工具调用被哪个 Agent 会话发起？ |
+| Kit Versioning | Kit 能否锁定到审查过的版本并在授予过多权限时回滚？ |
 | Logging | 为每条已发出和已执行的命令打日志 |
 
 ---
@@ -171,4 +272,4 @@ S.E.A.L. = **Separation of execution planes, Egress-only networking, Auth scoped
 
 ---
 
-**总结**：S.E.A.L. 框架提供了一套可落地的 Agent 基础设施防御模式，填补了 prompt injection 防御（CaMeL/FIDES）与实际部署安全之间的空白。容器隔离不够，需要执行平面分离、仅出站网络、短期作用域凭证、资源暴露限制四层协同防御。对于部署自主 Agent 的团队来说，这是从"容器里跑就安全"幻觉中醒来的必读文章。
+**总结**：S.E.A.L. 框架提供了一套可落地的 Agent 基础设施防御模式，填补了 prompt injection 防御（CaMeL/FIDES）与实际部署安全之间的空白。容器隔离不够，需要执行平面分离、仅出站网络、短期作用域凭证、资源暴露限制四层协同防御。配合 Sandbox Kits 策略复用、MCP 工具网关、以及 microVM 硬件级隔离，构成多层次防御体系。对于部署自主 Agent 的团队来说，这是从"容器里跑就安全"幻觉中醒来的必读文章。
