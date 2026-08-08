@@ -1,0 +1,287 @@
+{
+  "nodes": [
+    "agent_1",
+    "agent_2",
+    "agent_3",
+    "service_api",
+    "service_cache",
+    "service_db",
+    "user_A",
+    "user_B",
+    "user_C"
+  ],
+  "edges": [
+    {
+      "from": "user_A",
+      "to": "agent_1",
+      "message_id": "msg_001",
+      "timestamp": "2026-08-08T10:00:00Z",
+      "content_hash": "hash_a1"
+    },
+    {
+      "from": "agent_1",
+      "to": "agent_2",
+      "message_id": "msg_001",
+      "timestamp": "2026-08-08T10:00:05Z",
+      "content_hash": "hash_a2"
+    },
+    {
+      "from": "agent_2",
+      "to": "service_db",
+      "message_id": "msg_001",
+      "timestamp": "2026-08-08T10:00:10Z",
+      "content_hash": "hash_a3"
+    },
+    {
+      "from": "user_B",
+      "to": "agent_1",
+      "message_id": "msg_002",
+      "timestamp": "2026-08-08T10:01:00Z",
+      "content_hash": "hash_b1"
+    },
+    {
+      "from": "agent_1",
+      "to": "agent_3",
+      "message_id": "msg_002",
+      "timestamp": "2026-08-08T10:01:03Z",
+      "content_hash": "hash_b2"
+    },
+    {
+      "from": "agent_1",
+      "to": "service_cache",
+      "message_id": "msg_002",
+      "timestamp": "2026-08-08T10:01:04Z",
+      "content_hash": "hash_b4"
+    },
+    {
+      "from": "agent_3",
+      "to": "service_api",
+      "message_id": "msg_002",
+      "timestamp": "2026-08-08T10:01:08Z",
+      "content_hash": "hash_b3"
+    },
+    {
+      "from": "user_C",
+      "to": "agent_2",
+      "message_id": "msg_003",
+      "timestamp": "2026-08-08T10:02:00Z",
+      "content_hash": "hash_c1"
+    },
+    {
+      "from": "agent_2",
+      "to": "service_db",
+      "message_id": "msg_003",
+      "timestamp": "2026-08-08T10:02:05Z",
+      "content_hash": "hash_c2"
+    },
+    {
+      "from": "service_db",
+      "to": "agent_2",
+      "message_id": "msg_003",
+      "timestamp": "2026-08-08T10:02:07Z",
+      "content_hash": "hash_c3"
+    },
+    {
+      "from": "agent_2",
+      "to": "user_C",
+      "message_id": "msg_003",
+      "timestamp": "2026-08-08T10:02:10Z",
+      "content_hash": "hash_c4"
+    }
+  ],
+  "analysis": {
+    "max_depth": 3,
+    "key_nodes": [
+      "agent_2",
+      "agent_1",
+      "service_db",
+      "agent_3",
+      "user_C"
+    ],
+    "breadth_by_depth": {
+      "0": 2,
+      "1": 1,
+      "2": 3,
+      "3": 3
+    },
+    "node_depths": {
+      "user_A": 0,
+      "user_B": 0,
+      "agent_1": 1,
+      "agent_2": 2,
+      "agent_3": 2,
+      "service_cache": 2,
+      "service_db": 3,
+      "user_C": 3,
+      "service_api": 3
+    },
+    "key_nodes_detail": [
+      {
+        "node": "agent_2",
+        "out_degree": 3,
+        "in_degree": 3,
+        "score": 6.0
+      },
+      {
+        "node": "agent_1",
+        "out_degree": 3,
+        "in_degree": 2,
+        "score": 5.0
+      },
+      {
+        "node": "service_db",
+        "out_degree": 1,
+        "in_degree": 2,
+        "score": 3.0
+      },
+      {
+        "node": "agent_3",
+        "out_degree": 1,
+        "in_degree": 1,
+        "score": 2.0
+      },
+      {
+        "node": "user_C",
+        "out_degree": 1,
+        "in_degree": 1,
+        "score": 2.0
+      }
+    ],
+    "sources": [
+      "user_A",
+      "user_B"
+    ],
+    "sinks": [
+      "service_api",
+      "service_cache"
+    ],
+    "per_message": {
+      "msg_001": {
+        "hops": 3,
+        "chain_depth": 3,
+        "nodes": [
+          "agent_1",
+          "agent_2",
+          "service_db",
+          "user_A"
+        ]
+      },
+      "msg_002": {
+        "hops": 4,
+        "chain_depth": 3,
+        "nodes": [
+          "agent_1",
+          "agent_3",
+          "service_api",
+          "service_cache",
+          "user_B"
+        ]
+      },
+      "msg_003": {
+        "hops": 4,
+        "chain_depth": 2,
+        "nodes": [
+          "agent_2",
+          "service_db",
+          "user_C"
+        ]
+      }
+    },
+    "sample_paths": {
+      "user_A": [
+        [
+          "user_A",
+          "agent_1",
+          "agent_2",
+          "service_db",
+          "agent_2"
+        ],
+        [
+          "user_A",
+          "agent_1",
+          "agent_2",
+          "service_db"
+        ],
+        [
+          "user_A",
+          "agent_1",
+          "agent_2",
+          "service_db",
+          "agent_2"
+        ],
+        [
+          "user_A",
+          "agent_1",
+          "agent_2",
+          "user_C",
+          "agent_2"
+        ],
+        [
+          "user_A",
+          "agent_1",
+          "agent_2",
+          "user_C"
+        ],
+        [
+          "user_A",
+          "agent_1",
+          "agent_3",
+          "service_api"
+        ],
+        [
+          "user_A",
+          "agent_1",
+          "service_cache"
+        ]
+      ],
+      "user_B": [
+        [
+          "user_B",
+          "agent_1",
+          "agent_2",
+          "service_db",
+          "agent_2"
+        ],
+        [
+          "user_B",
+          "agent_1",
+          "agent_2",
+          "service_db"
+        ],
+        [
+          "user_B",
+          "agent_1",
+          "agent_2",
+          "service_db",
+          "agent_2"
+        ],
+        [
+          "user_B",
+          "agent_1",
+          "agent_2",
+          "user_C",
+          "agent_2"
+        ],
+        [
+          "user_B",
+          "agent_1",
+          "agent_2",
+          "user_C"
+        ],
+        [
+          "user_B",
+          "agent_1",
+          "agent_3",
+          "service_api"
+        ],
+        [
+          "user_B",
+          "agent_1",
+          "service_cache"
+        ]
+      ]
+    },
+    "edge_count": 11,
+    "node_count": 9
+  }
+}

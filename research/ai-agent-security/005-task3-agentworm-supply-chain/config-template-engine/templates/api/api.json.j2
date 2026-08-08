@@ -1,0 +1,36 @@
+{
+  "service": {
+    "name": "{{ app_name | default('api-service') }}",
+    "version": "{{ app_version | default('1.0.0') }}",
+    "env": "{{ env_name | default('dev') }}",
+    "host": "{{ host | default('0.0.0.0') }}",
+    "port": {{ port | default(8000) }},
+    "workers": {{ workers | default(1 if env_name | default('dev') == 'dev' else 4) }},
+    "debug": {{ debug | default(env_name | default('dev') == 'dev') | to_json }}
+  },
+  "http": {
+    "base_path": "{{ base_path | default('/api/v1') }}",
+    "request_timeout": {{ request_timeout | default(30) }},
+    "cors": {
+      "enabled": {{ cors_enabled | default(true) | to_json }},
+      "origins": {{ cors_origins | default(['*']) | to_json }}
+    }
+  },
+  "auth": {
+    "enabled": {{ auth_enabled | default(true) | to_json }},
+    "type": "{{ auth_type | default('jwt') }}",
+    "jwt": {
+      "algorithm": "{{ jwt_algorithm | default('HS256') }}",
+      "access_token_ttl": {{ access_token_ttl | default(3600) }},
+      "refresh_token_ttl": {{ refresh_token_ttl | default(86400) }}
+    }
+  },
+  "rate_limit": {
+    "enabled": {{ rate_limit_enabled | default(false) | to_json }},
+    "requests_per_minute": {{ rpm | default(60) }}
+  },
+  "observability": {
+    "metrics_enabled": {{ metrics_enabled | default(true) | to_json }},
+    "health_path": "{{ health_path | default('/health') }}"
+  }
+}

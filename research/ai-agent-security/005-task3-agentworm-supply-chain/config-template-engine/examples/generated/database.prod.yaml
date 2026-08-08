@@ -1,0 +1,40 @@
+database:
+  engine: postgresql
+  host: db.internal.example.com
+  port: 5432
+  name: demo_prod
+  user: demo_app
+  password: ${DB_PASSWORD}
+  options:
+    charset: utf8mb4
+    timezone: UTC
+    ssl_mode: require
+pool:
+  min_size: 5
+  max_size: 30
+  max_overflow: 10
+  pool_timeout: 30
+  recycle: 1800
+  pre_ping: true
+replicas:
+- host: db-ro-1.internal.example.com
+  port: 5432
+  weight: 2
+  read_only: true
+- host: db-ro-2.internal.example.com
+  port: 5432
+  weight: 1
+  read_only: true
+migrations:
+  auto_migrate: false
+  scripts_path: migrations
+redis:
+  enabled: true
+  host: redis.internal.example.com
+  port: 6379
+  db: 0
+  password: ${REDIS_PASSWORD}
+  ssl: true
+environments:
+  current: prod
+  debug_sql: false

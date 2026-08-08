@@ -1,0 +1,7 @@
+Dear Bob,
+
+Your report for 2026-08-08 is ready.
+Account: Bob Chen (id=1002)
+
+Best regards,
+Report Bot

@@ -1,0 +1,39 @@
+env_name: dev
+app_name: demo-service
+app_version: 0.1.0
+log_level: DEBUG
+colored: true
+file_logging: true
+json_logs: false
+log_dir: logs
+
+db_engine: postgresql
+db_host: localhost
+db_port: 5432
+db_name: demo_dev
+db_user: demo
+db_password: dev-secret
+pool_min: 1
+pool_max: 5
+use_redis: true
+redis_host: localhost
+redis_port: 6379
+
+host: 127.0.0.1
+port: 8000
+debug: true
+cors_origins:
+  - "http://localhost:3000"
+  - "http://127.0.0.1:3000"
+auth_enabled: true
+auth_type: jwt
+jwt_secret: dev-only-secret
+rate_limit_enabled: false
+endpoints:
+  - path: /users
+    methods: [GET, POST]
+    auth_required: true
+    description: User management
+  - path: /health
+    methods: [GET]
+    auth_required: false

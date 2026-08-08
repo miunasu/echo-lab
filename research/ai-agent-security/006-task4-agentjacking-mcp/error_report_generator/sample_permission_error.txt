@@ -1,0 +1,27 @@
+================================================================================
+ERROR REPORT
+================================================================================
+Timestamp   : 2026-08-08T12:09:42Z
+Error Type  : permission_error
+Severity    : warning
+Message     : Permission denied for requested resource
+--------------------------------------------------------------------------------
+Stack Trace:
+  File "auth/guards.py", line 31, in require_role
+    raise PermissionError(f"role {role} not allowed")
+PermissionError: role viewer not allowed for action delete
+--------------------------------------------------------------------------------
+Context:
+  user_id: 456
+  role: viewer
+  required_role: admin
+  resource: orders
+  action: delete
+  ip: 10.0.0.42
+  environment: test
+  hostname: dev-local
+--------------------------------------------------------------------------------
+Custom Fields:
+  generator: log_generator.py
+  schema_version: 1.0
+================================================================================

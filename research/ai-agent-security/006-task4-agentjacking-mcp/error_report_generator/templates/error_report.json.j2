@@ -1,0 +1,9 @@
+{
+  "timestamp": {{ timestamp | tojson }},
+  "error_type": {{ error_type | tojson }},
+  "severity": {{ severity | tojson }},
+  "message": {{ message | tojson }},
+  "stack_trace": {{ stack_trace | tojson }},
+  "context": {{ context | tojson }}{% if custom_fields %},
+  "custom_fields": {{ custom_fields | tojson }}{% endif %}
+}

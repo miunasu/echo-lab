@@ -1,0 +1,39 @@
+{
+  "service": {
+    "name": "demo-service",
+    "version": "0.1.0",
+    "env": "dev",
+    "host": "127.0.0.1",
+    "port": 8000,
+    "workers": 1,
+    "debug": true
+  },
+  "http": {
+    "base_path": "/api/v1",
+    "request_timeout": 30,
+    "cors": {
+      "enabled": true,
+      "origins": [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000"
+      ]
+    }
+  },
+  "auth": {
+    "enabled": true,
+    "type": "jwt",
+    "jwt": {
+      "algorithm": "HS256",
+      "access_token_ttl": 3600,
+      "refresh_token_ttl": 86400
+    }
+  },
+  "rate_limit": {
+    "enabled": false,
+    "requests_per_minute": 60
+  },
+  "observability": {
+    "metrics_enabled": true,
+    "health_path": "/health"
+  }
+}

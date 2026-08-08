@@ -1,0 +1,54 @@
+{
+  "assets": [
+    {
+      "ip": "192.168.1.100",
+      "port": 22,
+      "service": "ssh",
+      "product": "OpenSSH",
+      "version": "7.4",
+      "vendor": "OpenBSD",
+      "os": "CentOS 7",
+      "tags": ["production", "linux"]
+    },
+    {
+      "ip": "192.168.1.20",
+      "port": 443,
+      "service": "https",
+      "product": "Apache httpd",
+      "version": "2.4.49",
+      "vendor": "Apache",
+      "os": "Ubuntu 20.04",
+      "tags": ["web", "dmz"]
+    },
+    {
+      "ip": "10.0.0.55",
+      "port": 3306,
+      "service": "mysql",
+      "product": "MySQL",
+      "version": "5.7.30",
+      "vendor": "Oracle",
+      "os": "Ubuntu 18.04",
+      "tags": ["database", "internal"]
+    },
+    {
+      "ip": "10.0.0.80",
+      "port": 445,
+      "service": "smb",
+      "product": "Windows Server",
+      "version": "2012 R2",
+      "vendor": "Microsoft",
+      "os": "Windows Server 2012 R2",
+      "tags": ["file-server"]
+    },
+    {
+      "host": "jenkins.internal",
+      "ip": "10.0.1.12",
+      "port": 8080,
+      "service": "http",
+      "product": "Jenkins",
+      "version": "2.346",
+      "vendor": "Jenkins",
+      "tags": ["ci", "dev"]
+    }
+  ]
+}

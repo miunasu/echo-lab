@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Alice",
+    "date": "2026-08-08",
+    "id": "1001",
+    "user": {"name": "Alice Wong"},
+    "department": "Engineering",
+    "manager": {"name": "Bob Lee"},
+    "summary": "Completed API migration."
+  },
+  {
+    "name": "Bob",
+    "date": "2026-08-08",
+    "id": "1002",
+    "user": {"name": "Bob Chen"},
+    "department": "Sales",
+    "manager": {"name": "Carol Zhang"},
+    "summary": "Closed 3 enterprise deals."
+  }
+]

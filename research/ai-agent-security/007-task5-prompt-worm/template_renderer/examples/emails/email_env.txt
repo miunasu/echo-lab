@@ -1,0 +1,7 @@
+Dear EnvUser,
+
+Your report for 2026-01-01 is ready.
+Account: From Env (id=0)
+
+Best regards,
+Report Bot

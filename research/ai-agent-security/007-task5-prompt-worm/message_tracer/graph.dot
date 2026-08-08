@@ -1,0 +1,26 @@
+digraph message_trace {
+  rankdir=LR;
+  node [shape=box, style="rounded,filled", fillcolor="#e8f4fc", fontname="Helvetica"];
+  edge [fontname="Helvetica", fontsize=10];
+
+  "agent_1" [label="agent_1\nd=1", fillcolor="#ffd54f", style="rounded,filled,bold"];
+  "agent_2" [label="agent_2\nd=2", fillcolor="#ffd54f", style="rounded,filled,bold"];
+  "agent_3" [label="agent_3\nd=2", fillcolor="#ffd54f", style="rounded,filled,bold"];
+  "service_api" [label="service_api\nd=3", fillcolor="#ffcdd2"];
+  "service_cache" [label="service_cache\nd=2", fillcolor="#ffcdd2"];
+  "service_db" [label="service_db\nd=3", fillcolor="#ffd54f", style="rounded,filled,bold"];
+  "user_A" [label="user_A\nd=0", shape=ellipse, fillcolor="#c8e6c9"];
+  "user_B" [label="user_B\nd=0", shape=ellipse, fillcolor="#c8e6c9"];
+  "user_C" [label="user_C\nd=3", fillcolor="#ffd54f", style="rounded,filled,bold"];
+
+  "user_A" -> "agent_1" [label="msg_001"];
+  "agent_1" -> "agent_2" [label="msg_001"];
+  "agent_2" -> "service_db" [label="msg_001\nmsg_003"];
+  "user_B" -> "agent_1" [label="msg_002"];
+  "agent_1" -> "agent_3" [label="msg_002"];
+  "agent_1" -> "service_cache" [label="msg_002"];
+  "agent_3" -> "service_api" [label="msg_002"];
+  "user_C" -> "agent_2" [label="msg_003"];
+  "service_db" -> "agent_2" [label="msg_003"];
+  "agent_2" -> "user_C" [label="msg_003"];
+}

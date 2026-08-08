@@ -1,0 +1,33 @@
+entry_points = [
+    { name = "demo-json", module = "demo_json_pkg.cli", attr = "main" },
+]
+
+[package]
+name = "demo_json_pkg"
+version = "0.2.0"
+author = "Bob"
+author_email = "bob@example.com"
+description = "Demo package from JSON config"
+license = "MIT"
+python_requires = ">=3.8"
+dependencies = []
+package_dir = "."
+keywords = [
+    "json",
+    "demo",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+use_pyproject = true
+use_setup_py = true
+include_readme = true
+include_license = true
+
+[[modules]]
+name = "core"
+content = "\"\"\"Core for demo_json_pkg.\"\"\"\n\ndef ping() -> str:\n    return \"pong\"\n"
+
+[optional_dependencies]
+
+[urls]

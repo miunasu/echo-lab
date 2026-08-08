@@ -1,0 +1,25 @@
+{
+  "default_format": "json",
+  "default_severity": null,
+  "default_context": {
+    "environment": "test",
+    "hostname": "dev-local"
+  },
+  "default_custom_fields": {
+    "generator": "log_generator.py",
+    "schema_version": "1.0"
+  },
+  "type_defaults": {
+    "runtime_error": {
+      "context": {
+        "runtime": "python"
+      }
+    },
+    "api_call_failure": {
+      "severity": "error",
+      "context": {
+        "retryable": true
+      }
+    }
+  }
+}

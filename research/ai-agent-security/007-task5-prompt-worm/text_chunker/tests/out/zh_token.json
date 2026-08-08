@@ -1,0 +1,72 @@
+[
+  {
+    "chunk_id": 1,
+    "content": "人工智能与自然语言处理导论\n\n自然语言处理（Natural Language Language Processing，NLP）是人工智能的重要分支，致力于让计算机理解、生成与处理人类语言。",
+    "start_pos": 0,
+    "end_pos": 94,
+    "overlap_with_next": 10
+  },
+  {
+    "chunk_id": 2,
+    "content": "解、生成与处理人类语言。随着深度学习的发展，大规模预训练语言模型在机器翻译、文本摘要、问答系统与对话生成等任务上取得了突破性进展。",
+    "start_pos": 82,
+    "end_pos": 147,
+    "overlap_with_next": 10
+  },
+  {
+    "chunk_id": 3,
+    "content": "了突破性进展。\n\n检索增强生成（Retrieval-Augmented Generation，RAG）是一种将外部知识库与生成模型结合的技术路线。其核心流程通常包括：文档收集与清洗、文本分块（chunking）、",
+    "start_pos": 140,
+    "end_pos": 246,
+    "overlap_with_next": 10
+  },
+  {
+    "chunk_id": 4,
+    "content": "、文本分块（chunking）、向量化嵌入、相似度检索，以及将检索到的上下文注入提示词以生成最终答案。分块质量直接影响检索精度与生成效果。",
+    "start_pos": 230,
+    "end_pos": 299,
+    "overlap_with_next": 10
+  },
+  {
+    "chunk_id": 5,
+    "content": "检索精度与生成效果。\n\n在文本分块实践中，常见策略包括固定长度切分、按段落边界切分、按句子边界切分以及滑动窗口切分。",
+    "start_pos": 289,
+    "end_pos": 347,
+    "overlap_with_next": 10
+  },
+  {
+    "chunk_id": 6,
+    "content": "滑动窗口切分。固定长度实现简单，但可能在语义中间硬切断；按段落或句子切分更利于保持语义完整；滑动窗口则通过重叠窗口提高召回率。",
+    "start_pos": 340,
+    "end_pos": 403,
+    "overlap_with_next": 10
+  },
+  {
+    "chunk_id": 7,
+    "content": "窗口提高召回率。合理设置块大小与重叠长度，可以在上下文完整性与检索粒度之间取得平衡。\n\n中文文本的分句需要同时考虑句号、问号、感叹号以及省略号等标点。",
+    "start_pos": 395,
+    "end_pos": 470,
+    "overlap_with_next": 10
+  },
+  {
+    "chunk_id": 8,
+    "content": "以及省略号等标点。英文则主要依赖句点、问号与感叹号，并注意缩写与小数点等干扰因素。一个健壮的分块工具应同时支持中英文，并可选按 token ",
+    "start_pos": 461,
+    "end_pos": 531,
+    "overlap_with_next": 10
+  },
+  {
+    "chunk_id": 9,
+    "content": "持中英文，并可选按 token 计数，以适配不同大模型的上下文窗口限制。\n\n未来，随着多模态与长上下文模型的发展，分块策略仍将是知识增强系统中的关键基础设施",
+    "start_pos": 515,
+    "end_pos": 593,
+    "overlap_with_next": 10
+  },
+  {
+    "chunk_id": 10,
+    "content": "中的关键基础设施。工程上需要可配置的策略、可复现的输出格式，以及便于接入向量数据库与分布式处理流水线的标准化接口。",
+    "start_pos": 585,
+    "end_pos": 642,
+    "overlap_with_next": 0
+  }
+]

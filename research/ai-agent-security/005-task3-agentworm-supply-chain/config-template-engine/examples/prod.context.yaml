@@ -1,0 +1,72 @@
+env_name: prod
+app_name: demo-service
+app_version: 1.0.0
+log_level: INFO
+colored: false
+file_logging: true
+json_logs: true
+log_dir: /var/log/demo-service
+max_bytes: 52428800
+backup_count: 10
+loggers:
+  urllib3:
+    level: WARNING
+    propagate: true
+  sqlalchemy.engine:
+    level: WARNING
+    propagate: true
+
+db_engine: postgresql
+db_host: db.internal.example.com
+db_port: 5432
+db_name: demo_prod
+db_user: demo_app
+db_password: "${DB_PASSWORD}"
+pool_min: 5
+pool_max: 30
+pool_overflow: 10
+ssl_mode: require
+auto_migrate: false
+replicas:
+  - host: db-ro-1.internal.example.com
+    port: 5432
+    weight: 2
+    read_only: true
+  - host: db-ro-2.internal.example.com
+    port: 5432
+    weight: 1
+    read_only: true
+use_redis: true
+redis_host: redis.internal.example.com
+redis_port: 6379
+redis_password: "${REDIS_PASSWORD}"
+redis_ssl: true
+
+host: 0.0.0.0
+port: 8080
+workers: 8
+debug: false
+cors_enabled: true
+cors_origins:
+  - "https://app.example.com"
+auth_enabled: true
+auth_type: jwt
+jwt_secret: "${JWT_SECRET}"
+jwt_algorithm: HS256
+access_token_ttl: 900
+refresh_token_ttl: 604800
+rate_limit_enabled: true
+rpm: 120
+rate_burst: 40
+metrics_enabled: true
+tracing_enabled: true
+tracing_endpoint: http://otel-collector:4317
+endpoints:
+  - path: /users
+    methods: [GET, POST, PATCH]
+    auth_required: true
+    rate_limit: 30
+  - path: /orders
+    methods: [GET, POST]
+    auth_required: true
+    rate_limit: 60

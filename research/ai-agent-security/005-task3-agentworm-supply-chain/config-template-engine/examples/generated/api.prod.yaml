@@ -1,0 +1,66 @@
+service:
+  name: demo-service
+  version: 1.0.0
+  env: prod
+  host: 0.0.0.0
+  port: 8080
+  workers: 8
+  debug: false
+  reload: false
+http:
+  base_path: /api/v1
+  request_timeout: 30
+  max_request_size: 10MB
+  cors:
+    enabled: true
+    origins:
+    - https://app.example.com
+    methods:
+    - GET
+    - POST
+    - PUT
+    - PATCH
+    - DELETE
+    - OPTIONS
+    allow_credentials: true
+auth:
+  enabled: true
+  type: jwt
+  jwt:
+    secret: ${JWT_SECRET}
+    algorithm: HS256
+    access_token_ttl: 900
+    refresh_token_ttl: 604800
+rate_limit:
+  enabled: true
+  strategy: fixed-window
+  requests_per_minute: 120
+  burst: 40
+endpoints:
+- path: /users
+  methods:
+  - GET
+  - POST
+  - PATCH
+  auth_required: true
+  rate_limit: 30
+- path: /orders
+  methods:
+  - GET
+  - POST
+  auth_required: true
+  rate_limit: 60
+observability:
+  metrics:
+    enabled: true
+    path: /metrics
+  healthcheck:
+    enabled: true
+    path: /health
+  tracing:
+    enabled: true
+    exporter: otlp
+    endpoint: http://otel-collector:4317
+logging:
+  level: INFO
+  json: true

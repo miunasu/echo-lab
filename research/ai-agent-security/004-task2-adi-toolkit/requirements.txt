@@ -1,0 +1,5 @@
+# ADI Red Team Toolkit dependencies
+# Core: stdlib only for generation/injection
+# Optional extras for testing & analysis
+pytest>=7.0.0
+pytest-cov>=4.0.0

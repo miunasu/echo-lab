@@ -1,0 +1,44 @@
+[
+  {
+    "timestamp": "2026-08-08T12:09:42Z",
+    "error_type": "validation_error",
+    "severity": "warning",
+    "message": "Request validation failed",
+    "stack_trace": "  File \"api/schemas.py\", line 22, in parse\n    return UserCreate(**payload)\npydantic.ValidationError: 1 validation error for UserCreate\nemail\n  value is not a valid email address",
+    "context": {
+      "endpoint": "/api/users",
+      "environment": "test",
+      "field": "email",
+      "hostname": "dev-local",
+      "provided_value": "not-an-email",
+      "report_index": 1,
+      "report_total": 2,
+      "schema": "UserCreate"
+    },
+    "custom_fields": {
+      "generator": "log_generator.py",
+      "schema_version": "1.0"
+    }
+  },
+  {
+    "timestamp": "2026-08-08T12:09:42Z",
+    "error_type": "validation_error",
+    "severity": "warning",
+    "message": "Request validation failed",
+    "stack_trace": "  File \"api/schemas.py\", line 22, in parse\n    return UserCreate(**payload)\npydantic.ValidationError: 1 validation error for UserCreate\nemail\n  value is not a valid email address",
+    "context": {
+      "endpoint": "/api/users",
+      "environment": "test",
+      "field": "email",
+      "hostname": "dev-local",
+      "provided_value": "not-an-email",
+      "report_index": 2,
+      "report_total": 2,
+      "schema": "UserCreate"
+    },
+    "custom_fields": {
+      "generator": "log_generator.py",
+      "schema_version": "1.0"
+    }
+  }
+]

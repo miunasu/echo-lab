@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "py-package-builder"
+version = "1.0.0"
+description = "Automated Python package scaffolding and wheel builder"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+authors = [
+    {name = "Spore"},
+]
+keywords = ["python", "packaging", "wheel", "setuptools", "scaffold"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Build Tools",
+]
+dependencies = []
+
+[project.optional-dependencies]
+toml = [
+    "tomli>=2.0; python_version < '3.11'",
+    "tomli-w>=1.0",
+]
+
+[project.scripts]
+py-package-builder = "py_package_builder.cli:main"
+ppb = "py_package_builder.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["py_package_builder*"]

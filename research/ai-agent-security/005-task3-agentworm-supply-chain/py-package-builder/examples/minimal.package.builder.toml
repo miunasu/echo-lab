@@ -1,0 +1,19 @@
+[package]
+name = "minimal_pkg"
+version = "0.1.0"
+author = "Spore"
+description = "Minimal package template"
+license = "MIT"
+python_requires = ">=3.8"
+dependencies = []
+use_pyproject = true
+use_setup_py = true
+
+[[modules]]
+name = "core"
+content = "def answer() -> int:\n    return 42\n"
+
+[[entry_points]]
+name = "minimal-pkg"
+module = "minimal_pkg.cli"
+attr = "main"

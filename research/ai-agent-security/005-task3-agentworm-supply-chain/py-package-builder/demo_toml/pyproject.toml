@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "minimal_pkg"
+version = "0.1.0"
+description = "Minimal package template"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.8"
+authors = [
+    {name = "Spore"},
+]
+keywords = []
+classifiers = []
+dependencies = []
+
+[project.scripts]
+minimal-pkg = "minimal_pkg.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["minimal_pkg*"]

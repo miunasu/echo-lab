@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "demo_json_pkg"
+version = "0.2.0"
+description = "Demo package from JSON config"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.8"
+authors = [
+    {name = "Bob", email = "bob@example.com"},
+]
+keywords = ["json", "demo"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dependencies = []
+
+[project.scripts]
+demo-json = "demo_json_pkg.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["demo_json_pkg*"]

@@ -1,0 +1,7 @@
+Dear Alice,
+
+Your report for 2026-08-08 is ready.
+Account: Alice Wong (id=1001)
+
+Best regards,
+Report Bot

@@ -1,0 +1,52 @@
+# Example configuration for py-package-builder
+# Usage:
+#   py-package-builder init -c examples/sample.package.builder.toml -o ./demo_hello
+#   py-package-builder build -p ./demo_hello
+#   py-package-builder verify -p ./demo_hello
+
+[package]
+name = "demo_hello"
+version = "0.1.0"
+author = "Alice"
+author_email = "alice@example.com"
+description = "Demo package generated from sample.package.builder.toml"
+license = "MIT"
+python_requires = ">=3.8"
+dependencies = ["click>=8.0"]
+keywords = ["demo", "hello", "example"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+]
+use_pyproject = true
+use_setup_py = true
+include_readme = true
+include_license = true
+
+[optional_dependencies]
+dev = ["pytest>=7.0", "build>=1.0"]
+
+[urls]
+Homepage = "https://example.com/demo_hello"
+Repository = "https://example.com/demo_hello.git"
+
+[[modules]]
+name = "core"
+content = """\"\"\"Core logic for demo_hello.\"\"\"
+
+def hello(name: str = \"world\") -> str:
+    return f\"Hello, {name} from demo_hello!\"
+"""
+
+[[modules]]
+name = "utils"
+content = """\"\"\"Utility helpers.\"\"\"
+
+def shout(text: str) -> str:
+    return text.upper()
+"""
+
+[[entry_points]]
+name = "demo-hello"
+module = "demo_hello.cli"
+attr = "main"

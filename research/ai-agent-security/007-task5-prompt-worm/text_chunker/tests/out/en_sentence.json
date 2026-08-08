@@ -1,0 +1,86 @@
+[
+  {
+    "chunk_id": 1,
+    "content": "Introduction to Text Chunking for RAG Systems\n\nRetrieval-Augmented Generation (RAG) combines a parametric language model with a non-parametric memory, typically a vector database of document chunks.",
+    "start_pos": 0,
+    "end_pos": 198,
+    "overlap_with_next": 29
+  },
+  {
+    "chunk_id": 2,
+    "content": " database of document chunks. Before embedding, long documents must be split into smaller units that fit model context windows and preserve semantic coherence.",
+    "start_pos": 169,
+    "end_pos": 328,
+    "overlap_with_next": 28
+  },
+  {
+    "chunk_id": 3,
+    "content": "preserve semantic coherence.\n\nFixed-size chunking is simple and predictable: the text is cut every N characters or tokens, optionally with an overlap so that information near boundaries is not lost.",
+    "start_pos": 300,
+    "end_pos": 498,
+    "overlap_with_next": 29
+  },
+  {
+    "chunk_id": 4,
+    "content": " near boundaries is not lost. Soft boundary detection can further improve quality by preferring paragraph or sentence breaks near the cut point.\n\nParagraph-based chunking packs complete paragraphs until the size budget is reached.",
+    "start_pos": 469,
+    "end_pos": 699,
+    "overlap_with_next": 29
+  },
+  {
+    "chunk_id": 5,
+    "content": "l the size budget is reached. This strategy works well for well-structured articles, technical reports, and documentation where paragraphs already represent topical units.",
+    "start_pos": 670,
+    "end_pos": 841,
+    "overlap_with_next": 29
+  },
+  {
+    "chunk_id": 6,
+    "content": "eady represent topical units. Oversized paragraphs can be recursively split with a fixed strategy.\n\nSentence-based chunking is finer-grained.",
+    "start_pos": 812,
+    "end_pos": 953,
+    "overlap_with_next": 29
+  },
+  {
+    "chunk_id": 7,
+    "content": "ed chunking is finer-grained. It packs whole sentences into chunks and is especially useful for Q&A corpora and dense retrieval scenarios. Multilingual support matters: Chinese uses 。！？ while English uses .!?",
+    "start_pos": 924,
+    "end_pos": 1132,
+    "overlap_with_next": 29
+  },
+  {
+    "chunk_id": 8,
+    "content": "es 。！？ while English uses .!? and both may include closing quotes or brackets after the terminator.\n\nSliding-window chunking advances a fixed window with a constant stride.",
+    "start_pos": 1103,
+    "end_pos": 1275,
+    "overlap_with_next": 29
+  },
+  {
+    "chunk_id": 9,
+    "content": "indow with a constant stride. High overlap increases recall at the cost of more chunks and higher storage.",
+    "start_pos": 1246,
+    "end_pos": 1352,
+    "overlap_with_next": 29
+  },
+  {
+    "chunk_id": 10,
+    "content": "re chunks and higher storage. In production systems, engineers often tune chunk size between 200 and 800 tokens and overlap between 10% and 20% of the window.",
+    "start_pos": 1323,
+    "end_pos": 1481,
+    "overlap_with_next": 28
+  },
+  {
+    "chunk_id": 11,
+    "content": "n 10% and 20% of the window.\n\nReliable tooling should emit machine-readable JSON with chunk identifiers, content, character offsets, and overlap metadata.",
+    "start_pos": 1453,
+    "end_pos": 1607,
+    "overlap_with_next": 29
+  },
+  {
+    "chunk_id": 12,
+    "content": "ffsets, and overlap metadata. Such output integrates cleanly with distributed pipelines, vector stores, and evaluation harnesses used in modern NLP workflows.",
+    "start_pos": 1578,
+    "end_pos": 1736,
+    "overlap_with_next": 0
+  }
+]

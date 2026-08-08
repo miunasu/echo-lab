@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "api.schema.json",
+  "title": "ApiConfig",
+  "type": "object",
+  "required": ["service", "http"],
+  "properties": {
+    "service": {
+      "type": "object",
+      "required": ["name", "env", "host", "port"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "version": { "type": "string" },
+        "env": { "type": "string", "enum": ["dev", "test", "staging", "prod"] },
+        "host": { "type": "string", "minLength": 1 },
+        "port": { "type": "integer", "minimum": 1, "maximum": 65535 },
+        "workers": { "type": "integer", "minimum": 1 },
+        "debug": { "type": "boolean" },
+        "reload": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "http": {
+      "type": "object",
+      "properties": {
+        "base_path": { "type": "string" },
+        "request_timeout": { "type": "integer", "minimum": 1 },
+        "max_request_size": { "type": "string" },
+        "cors": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "origins": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "methods": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "allow_credentials": { "type": "boolean" }
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "auth": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "type": { "type": "string", "enum": ["jwt", "api_key", "oauth2", "none"] },
+        "jwt": {
+          "type": "object",
+          "properties": {
+            "secret": { "type": "string" },
+            "algorithm": { "type": "string" },
+            "access_token_ttl": { "type": "integer", "minimum": 1 },
+            "refresh_token_ttl": { "type": "integer", "minimum": 1 }
+          }
+        },
+        "api_key": {
+          "type": "object",
+          "properties": {
+            "header": { "type": "string" },
+            "keys": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "rate_limit": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "strategy": { "type": "string" },
+        "requests_per_minute": { "type": "integer", "minimum": 1 },
+        "burst": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "endpoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path"],
+        "properties": {
+          "path": { "type": "string" },
+          "methods": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "auth_required": { "type": "boolean" },
+          "rate_limit": { "type": "integer" },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "observability": {
+      "type": "object",
+      "properties": {
+        "metrics": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "path": { "type": "string" }
+          }
+        },
+        "healthcheck": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "path": { "type": "string" }
+          }
+        },
+        "tracing": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "exporter": { "type": "string" },
+            "endpoint": { "type": "string" }
+          }
+        },
+        "metrics_enabled": { "type": "boolean" },
+        "health_path": { "type": "string" }
+      }
+    },
+    "logging": {
+      "type": "object",
+      "properties": {
+        "level": { "type": "string" },
+        "json": { "type": "boolean" }
+      }
+    }
+  },
+  "additionalProperties": true
+}

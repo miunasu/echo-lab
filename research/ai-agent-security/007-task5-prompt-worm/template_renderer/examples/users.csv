@@ -1,0 +1,4 @@
+name,date,id,user.name,department,manager.name,summary
+Alice,2026-08-08,1001,Alice Wong,Engineering,Bob Lee,Completed API migration.
+Bob,2026-08-08,1002,Bob Chen,Sales,Carol Zhang,Closed 3 enterprise deals.
+Carol,2026-08-07,1003,Carol Zhang,HR,,Onboarded 2 new hires.

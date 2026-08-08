@@ -1,0 +1,27 @@
+================================================================================
+ERROR REPORT
+================================================================================
+Timestamp   : {{ timestamp }}
+Error Type  : {{ error_type }}
+Severity    : {{ severity }}
+Message     : {{ message }}
+--------------------------------------------------------------------------------
+Stack Trace:
+{{ stack_trace }}
+--------------------------------------------------------------------------------
+Context:
+{% if context %}
+{% for key, value in context.items() %}
+  {{ key }}: {{ value | tojson if (value is mapping or (value is sequence and value is not string)) else value }}
+{% endfor %}
+{% else %}
+  (empty)
+{% endif %}
+{% if custom_fields %}
+--------------------------------------------------------------------------------
+Custom Fields:
+{% for key, value in custom_fields.items() %}
+  {{ key }}: {{ value | tojson if (value is mapping or (value is sequence and value is not string)) else value }}
+{% endfor %}
+{% endif %}
+================================================================================

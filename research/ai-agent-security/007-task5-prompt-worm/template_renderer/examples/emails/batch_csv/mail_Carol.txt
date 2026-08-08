@@ -1,0 +1,7 @@
+Dear Carol,
+
+Your report for 2026-08-07 is ready.
+Account: Carol Zhang (id=1003)
+
+Best regards,
+Report Bot

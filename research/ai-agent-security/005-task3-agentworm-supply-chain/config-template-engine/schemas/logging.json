@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "logging.schema.json",
+  "title": "LoggingConfig",
+  "type": "object",
+  "required": ["version", "handlers", "root"],
+  "properties": {
+    "version": { "type": "integer", "const": 1 },
+    "disable_existing_loggers": { "type": "boolean" },
+    "formatters": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "format": { "type": "string" },
+          "datefmt": { "type": "string" }
+        }
+      }
+    },
+    "handlers": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["class", "level"],
+        "properties": {
+          "class": { "type": "string", "minLength": 1 },
+          "level": {
+            "type": "string",
+            "enum": ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL", "NOTSET"]
+          },
+          "formatter": { "type": "string" },
+          "filename": { "type": "string" },
+          "stream": { "type": "string" },
+          "maxBytes": { "type": "integer", "minimum": 1 },
+          "backupCount": { "type": "integer", "minimum": 0 },
+          "encoding": { "type": "string" }
+        }
+      }
+    },
+    "root": {
+      "type": "object",
+      "required": ["level", "handlers"],
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL", "NOTSET"]
+        },
+        "handlers": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        }
+      }
+    },
+    "loggers": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "level": { "type": "string" },
+          "propagate": { "type": "boolean" },
+          "handlers": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

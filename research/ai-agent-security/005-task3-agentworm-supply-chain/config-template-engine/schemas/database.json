@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "database.schema.json",
+  "title": "DatabaseConfig",
+  "type": "object",
+  "required": ["database", "pool"],
+  "properties": {
+    "database": {
+      "type": "object",
+      "required": ["engine", "host", "port", "name", "user"],
+      "properties": {
+        "engine": {
+          "type": "string",
+          "enum": ["postgresql", "mysql", "mariadb", "sqlite", "mssql", "oracle"]
+        },
+        "host": { "type": "string", "minLength": 1 },
+        "port": { "type": "integer", "minimum": 1, "maximum": 65535 },
+        "name": { "type": "string", "minLength": 1 },
+        "user": { "type": "string", "minLength": 1 },
+        "password": { "type": "string" },
+        "path": { "type": "string" },
+        "options": {
+          "type": "object",
+          "properties": {
+            "charset": { "type": "string" },
+            "timezone": { "type": "string" },
+            "ssl_mode": { "type": "string" },
+            "connect_timeout": { "type": "integer", "minimum": 0 }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "pool": {
+      "type": "object",
+      "required": ["min_size", "max_size"],
+      "properties": {
+        "min_size": { "type": "integer", "minimum": 0 },
+        "max_size": { "type": "integer", "minimum": 1 },
+        "max_overflow": { "type": "integer", "minimum": 0 },
+        "pool_timeout": { "type": "integer", "minimum": 0 },
+        "recycle": { "type": "integer", "minimum": 0 },
+        "pre_ping": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "replicas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["host"],
+        "properties": {
+          "host": { "type": "string" },
+          "port": { "type": "integer" },
+          "weight": { "type": "number" },
+          "read_only": { "type": "boolean" }
+        }
+      }
+    },
+    "migrations": {
+      "type": "object",
+      "properties": {
+        "auto_migrate": { "type": "boolean" },
+        "scripts_path": { "type": "string" }
+      }
+    },
+    "redis": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "host": { "type": "string" },
+        "port": { "type": "integer" },
+        "db": { "type": "integer" },
+        "password": { "type": "string" },
+        "ssl": { "type": "boolean" }
+      }
+    },
+    "environments": {
+      "type": "object",
+      "properties": {
+        "current": { "type": "string" },
+        "debug_sql": { "type": "boolean" }
+      }
+    }
+  },
+  "additionalProperties": true
+}

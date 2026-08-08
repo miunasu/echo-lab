@@ -1,0 +1,7 @@
+Dear {{name|default:"Anonymous"}},
+
+Your report for {{date}} is ready.
+Account: {{user.name|default:"N/A"}} (id={{id|default:"0"}})
+
+Best regards,
+Report Bot

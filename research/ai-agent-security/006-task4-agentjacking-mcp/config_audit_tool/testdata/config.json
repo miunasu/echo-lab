@@ -1,0 +1,19 @@
+{
+  "app": {
+    "name": "demo",
+    "port": 8080
+  },
+  "credentials": {
+    "api_key": "AIzaSyA-demoKeyValue1234567890abcd",
+    "client_secret": "GOCSPX-demoClientSecretValue999",
+    "password": "JsonDbPassword!2024"
+  },
+  "database": {
+    "connection_string": "Server=db;Database=app;User Id=sa;Password=SqlP@ss;",
+    "host": "localhost"
+  },
+  "integrations": {
+    "slack_token": "xoxb-1234567890-abcdefghij",
+    "webhook_url": "https://example.com/hook"
+  }
+}

@@ -1,0 +1,62 @@
+service:
+  name: demo-service
+  version: 0.1.0
+  env: dev
+  host: 127.0.0.1
+  port: 8000
+  workers: 1
+  debug: true
+  reload: true
+http:
+  base_path: /api/v1
+  request_timeout: 30
+  max_request_size: 10MB
+  cors:
+    enabled: true
+    origins:
+    - http://localhost:3000
+    - http://127.0.0.1:3000
+    methods:
+    - GET
+    - POST
+    - PUT
+    - PATCH
+    - DELETE
+    - OPTIONS
+    allow_credentials: true
+auth:
+  enabled: true
+  type: jwt
+  jwt:
+    secret: dev-only-secret
+    algorithm: HS256
+    access_token_ttl: 3600
+    refresh_token_ttl: 86400
+rate_limit:
+  enabled: false
+  strategy: fixed-window
+  requests_per_minute: 60
+  burst: 20
+endpoints:
+- path: /users
+  methods:
+  - GET
+  - POST
+  auth_required: true
+  description: User management
+- path: /health
+  methods:
+  - GET
+  auth_required: false
+observability:
+  metrics:
+    enabled: true
+    path: /metrics
+  healthcheck:
+    enabled: true
+    path: /health
+  tracing:
+    enabled: false
+logging:
+  level: DEBUG
+  json: false

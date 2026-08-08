@@ -1,0 +1,8 @@
+{
+  "key": "value",
+  "message": "Hello from http_client",
+  "nested": {
+    "enabled": true,
+    "count": 1
+  }
+}

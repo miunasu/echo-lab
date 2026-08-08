@@ -1,0 +1,206 @@
+{
+  "metadata": {
+    "name": "sample-local-cve-db",
+    "version": "1.0",
+    "description": "Offline sample CVE database for vuln_analyzer demos and tests",
+    "generated_at": "2026-03-21"
+  },
+  "cves": [
+    {
+      "cve_id": "CVE-2021-41617",
+      "description": "sshd in OpenSSH 6.2 through 8.x, when certain non-default configurations are used, allows privilege escalation because supplemental groups are not initialized as expected. Attackers require additional constraints to be met.",
+      "cvss": 7.0,
+      "severity": "HIGH",
+      "vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H",
+      "exploit_available": true,
+      "product": "OpenSSH",
+      "versions": ["7.4", "7.5", "7.6", "7.9", "8.0"],
+      "keywords": ["OpenSSH 7.4", "OpenSSH", "ssh"],
+      "cwe_ids": ["CWE-273"],
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-41617",
+        "https://www.openssh.com/security.html"
+      ],
+      "published": "2021-09-26T00:00:00.000"
+    },
+    {
+      "cve_id": "CVE-2018-15473",
+      "description": "OpenSSH through 7.7 is prone to a user enumeration vulnerability due to not delaying bailout for an invalid authenticating user until after the packet containing the request has been fully parsed.",
+      "cvss": 5.3,
+      "severity": "MEDIUM",
+      "vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+      "exploit_available": true,
+      "product": "OpenSSH",
+      "versions": ["7.4", "7.5", "7.6", "7.7"],
+      "keywords": ["OpenSSH 7.4", "OpenSSH"],
+      "cwe_ids": ["CWE-362"],
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2018-15473",
+        "https://www.exploit-db.com/exploits/45233"
+      ],
+      "published": "2018-08-17T00:00:00.000"
+    },
+    {
+      "cve_id": "CVE-2016-6210",
+      "description": "sshd in OpenSSH before 7.3, when SHA256 or SHA512 are used for user enumeration timing attack, allows remote attackers to enumerate users by observing timing differences.",
+      "cvss": 5.9,
+      "severity": "MEDIUM",
+      "product": "OpenSSH",
+      "versions": ["7.2", "7.3", "7.4"],
+      "keywords": ["OpenSSH", "OpenSSH 7.4"],
+      "exploit_available": true,
+      "cwe_ids": ["CWE-200"],
+      "references": ["https://nvd.nist.gov/vuln/detail/CVE-2016-6210"]
+    },
+    {
+      "cve_id": "CVE-2021-41773",
+      "description": "A flaw was found in a change made to path normalization in Apache HTTP Server 2.4.49. An attacker could map URLs to files outside the directories configured by Alias-like directives. If files outside of these directories are not protected by the usual default configuration 'require all denied', these requests can succeed. If CGI scripts are also enabled, this could allow for remote code execution.",
+      "cvss": 7.5,
+      "severity": "HIGH",
+      "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+      "exploit_available": true,
+      "product": "Apache httpd",
+      "versions": ["2.4.49"],
+      "keywords": ["Apache httpd 2.4.49", "Apache httpd", "httpd", "Apache"],
+      "cwe_ids": ["CWE-22"],
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-41773",
+        "https://www.exploit-db.com/exploits/50383",
+        "https://httpd.apache.org/security/vulnerabilities_24.html"
+      ],
+      "published": "2021-10-05T00:00:00.000"
+    },
+    {
+      "cve_id": "CVE-2021-42013",
+      "description": "It was found that the fix for CVE-2021-41773 in Apache HTTP Server 2.4.50 was insufficient. An attacker could use a path traversal attack to map URLs to files outside the directories configured by Alias-like directives.",
+      "cvss": 9.8,
+      "severity": "CRITICAL",
+      "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "exploit_available": true,
+      "product": "Apache httpd",
+      "versions": ["2.4.49", "2.4.50"],
+      "keywords": ["Apache httpd 2.4.49", "Apache httpd", "httpd"],
+      "cwe_ids": ["CWE-22"],
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-42013",
+        "https://www.exploit-db.com/exploits/50406"
+      ],
+      "published": "2021-10-07T00:00:00.000"
+    },
+    {
+      "cve_id": "CVE-2020-1938",
+      "description": "When using the Apache JServ Protocol (AJP), care must be taken when trusting incoming connections to Apache Tomcat. AJP was designed so that attackers could not inject malicious data. However CVE-2020-1938 (Ghostcat) showed that an AJP connector could be abused.",
+      "cvss": 9.8,
+      "severity": "CRITICAL",
+      "product": "Apache Tomcat",
+      "versions": ["9.0.30"],
+      "keywords": ["Apache Tomcat", "Ghostcat"],
+      "exploit_available": true,
+      "cwe_ids": ["CWE-44"],
+      "references": ["https://nvd.nist.gov/vuln/detail/CVE-2020-1938"]
+    },
+    {
+      "cve_id": "CVE-2020-14812",
+      "description": "Vulnerability in the MySQL Server product of Oracle MySQL (component: Server: Optimizer). Supported versions that are affected are 5.6.49 and prior, 5.7.31 and prior, and 8.0.21 and prior. Easily exploitable vulnerability allows high privileged attacker with network access via multiple protocols to compromise MySQL Server.",
+      "cvss": 4.9,
+      "severity": "MEDIUM",
+      "product": "MySQL",
+      "versions": ["5.7.30", "5.7.31", "8.0.21"],
+      "keywords": ["MySQL 5.7.30", "MySQL", "mysql"],
+      "exploit_available": false,
+      "cwe_ids": ["NVD-CWE-noinfo"],
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2020-14812",
+        "https://www.oracle.com/security-alerts/"
+      ],
+      "published": "2020-10-21T00:00:00.000"
+    },
+    {
+      "cve_id": "CVE-2021-2163",
+      "description": "Vulnerability in MySQL Server (component: Server: Optimizer). Difficult to exploit vulnerability allows high privileged attacker with network access via multiple protocols to compromise MySQL Server. Supported versions that are affected include 5.7.30 and prior.",
+      "cvss": 4.4,
+      "severity": "MEDIUM",
+      "product": "MySQL",
+      "versions": ["5.7.30"],
+      "keywords": ["MySQL", "MySQL 5.7.30"],
+      "exploit_available": false,
+      "references": ["https://nvd.nist.gov/vuln/detail/CVE-2021-2163"]
+    },
+    {
+      "cve_id": "CVE-2017-0144",
+      "description": "The SMBv1 server in Microsoft Windows Server 2012 R2 allows remote attackers to execute arbitrary code via crafted packets, aka EternalBlue / WannaCry related vulnerability.",
+      "cvss": 8.1,
+      "severity": "HIGH",
+      "vector": "CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "exploit_available": true,
+      "product": "Windows Server",
+      "versions": ["2012 R2", "2008 R2", "2016"],
+      "keywords": ["Windows Server 2012 R2", "Windows Server", "smb", "EternalBlue"],
+      "cwe_ids": ["CWE-20"],
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2017-0144",
+        "https://www.exploit-db.com/exploits/41891"
+      ],
+      "published": "2017-03-14T00:00:00.000"
+    },
+    {
+      "cve_id": "CVE-2020-1472",
+      "description": "An elevation of privilege vulnerability exists when an attacker establishes a vulnerable Netlogon secure channel connection to a domain controller, using the Netlogon Remote Protocol (MS-NRPC), aka Zerologon.",
+      "cvss": 10.0,
+      "severity": "CRITICAL",
+      "product": "Windows Server",
+      "versions": ["2012 R2", "2016", "2019"],
+      "keywords": ["Windows Server 2012 R2", "Windows Server", "Zerologon"],
+      "exploit_available": true,
+      "cwe_ids": ["CWE-330"],
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2020-1472",
+        "https://www.exploit-db.com/exploits/49042"
+      ],
+      "published": "2020-08-17T00:00:00.000"
+    },
+    {
+      "cve_id": "CVE-2022-34175",
+      "description": "Jenkins 2.277.1 through 2.346 (both inclusive) does not escape content of the tooltip on the 'Expand all'/'Collapse all' buttons, resulting in a stored XSS vulnerability exploitable by attackers with Item/Configure permission.",
+      "cvss": 5.4,
+      "severity": "MEDIUM",
+      "product": "Jenkins",
+      "versions": ["2.346", "2.345", "2.340"],
+      "keywords": ["Jenkins 2.346", "Jenkins"],
+      "exploit_available": false,
+      "cwe_ids": ["CWE-79"],
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-34175",
+        "https://www.jenkins.io/security/advisory/"
+      ],
+      "published": "2022-06-22T00:00:00.000"
+    },
+    {
+      "cve_id": "CVE-2022-34174",
+      "description": "In Jenkins 2.340 through 2.346 (both inclusive), the tooltip of the build button in list views supports HTML without escaping the job display name, resulting in a stored XSS vulnerability.",
+      "cvss": 6.1,
+      "severity": "MEDIUM",
+      "product": "Jenkins",
+      "versions": ["2.346"],
+      "keywords": ["Jenkins", "Jenkins 2.346"],
+      "exploit_available": false,
+      "cwe_ids": ["CWE-79"],
+      "references": ["https://nvd.nist.gov/vuln/detail/CVE-2022-34174"]
+    },
+    {
+      "cve_id": "CVE-2019-1003000",
+      "description": "A sandbox bypass vulnerability exists in Script Security and Pipeline Groovy plugins related to Jenkins, allowing attackers to execute arbitrary code on the Jenkins master.",
+      "cvss": 9.9,
+      "severity": "CRITICAL",
+      "product": "Jenkins",
+      "versions": ["2.150", "2.346"],
+      "keywords": ["Jenkins", "Jenkins 2.346"],
+      "exploit_available": true,
+      "cwe_ids": ["CWE-94"],
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2019-1003000",
+        "https://www.exploit-db.com/exploits/46572"
+      ]
+    }
+  ]
+}

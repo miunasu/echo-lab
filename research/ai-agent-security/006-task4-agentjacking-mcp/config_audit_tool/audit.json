@@ -1,0 +1,164 @@
+[
+  {
+    "file": ".env",
+    "line": 6,
+    "key": "DATABASE_URL",
+    "value_preview": "post****...****ppdb"
+  },
+  {
+    "file": ".env",
+    "line": 7,
+    "key": "OPENAI_API_KEY",
+    "value_preview": "sk-p****...****6789"
+  },
+  {
+    "file": ".env",
+    "line": 8,
+    "key": "AWS_SECRET_ACCESS_KEY",
+    "value_preview": "wJal****...****EKEY"
+  },
+  {
+    "file": ".env",
+    "line": 9,
+    "key": "SENTRY_DSN",
+    "value_preview": "http****...****/999"
+  },
+  {
+    "file": ".env",
+    "line": 10,
+    "key": "REDIS_URL",
+    "value_preview": "redi****...****79/1"
+  },
+  {
+    "file": "config.json",
+    "line": 7,
+    "key": "api_key",
+    "value_preview": "AIza****...****abcd"
+  },
+  {
+    "file": "config.json",
+    "line": 8,
+    "key": "client_secret",
+    "value_preview": "GOCS****...****e999"
+  },
+  {
+    "file": "config.json",
+    "line": 9,
+    "key": "password",
+    "value_preview": "Json****...****2024"
+  },
+  {
+    "file": "config.json",
+    "line": 12,
+    "key": "connection_string",
+    "value_preview": "Serv****...****@ss;"
+  },
+  {
+    "file": "config.json",
+    "line": 16,
+    "key": "slack_token",
+    "value_preview": "xoxb****...****ghij"
+  },
+  {
+    "file": "src/app.js",
+    "line": 2,
+    "key": "API_KEY",
+    "value_preview": "<from-environ>"
+  },
+  {
+    "file": "src/app.js",
+    "line": 3,
+    "key": "GITHUB_TOKEN",
+    "value_preview": "<from-environ>"
+  },
+  {
+    "file": "src/app.js",
+    "line": 6,
+    "key": "databaseUrl",
+    "value_preview": "post****...****/app"
+  },
+  {
+    "file": "src/app.js",
+    "line": 7,
+    "key": "stripeSecret",
+    "value_preview": "sk_t****...****3456"
+  },
+  {
+    "file": "src/app.js",
+    "line": 8,
+    "key": "sentryDsn",
+    "value_preview": "http****...****/123"
+  },
+  {
+    "file": "src/app.js",
+    "line": 12,
+    "key": "MONGO_URI",
+    "value_preview": "mong****...****t/db"
+  },
+  {
+    "file": "src/app.js",
+    "line": 13,
+    "key": "webhook_secret",
+    "value_preview": "whse****...****l012"
+  },
+  {
+    "file": "src/utils.py",
+    "line": 5,
+    "key": "SENTRY_DSN",
+    "value_preview": "http****...****2345"
+  },
+  {
+    "file": "src/utils.py",
+    "line": 9,
+    "key": "DATABASE_URL",
+    "value_preview": "<from-environ>"
+  },
+  {
+    "file": "src/utils.py",
+    "line": 10,
+    "key": "OPENAI_API_KEY",
+    "value_preview": "<from-environ>"
+  },
+  {
+    "file": "src/utils.py",
+    "line": 13,
+    "key": "STRIPE_SECRET_KEY",
+    "value_preview": "sk_l****...****STUV"
+  },
+  {
+    "file": "src/utils.py",
+    "line": 14,
+    "key": "aws_access_key",
+    "value_preview": "AKIA****...****MPLE"
+  },
+  {
+    "file": "src/utils.py",
+    "line": 15,
+    "key": "db_password",
+    "value_preview": "Supe****...****0rd!"
+  },
+  {
+    "file": "src/utils.py",
+    "line": 18,
+    "key": "api_key",
+    "value_preview": "pk_t****...****UvWx"
+  },
+  {
+    "file": "src/utils.py",
+    "line": 19,
+    "key": "redis_url",
+    "value_preview": "redi****...****79/0"
+  },
+  {
+    "file": "src/utils.py",
+    "line": 25,
+    "key": "client_secret",
+    "value_preview": "cs_l****...****i9j0"
+  },
+  {
+    "file": "src/utils.py",
+    "line": 26,
+    "key": "jwt_secret",
+    "value_preview": "eyJh****...****aB2c"
+  }
+]

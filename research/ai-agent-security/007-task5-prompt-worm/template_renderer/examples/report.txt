@@ -1,0 +1,10 @@
+# Daily Report - {{date|default:"(no date)"}}
+
+Employee: {{name}}
+Department: {{department|default:"General"}}
+Manager: {{manager.name|default:"TBD"}}
+
+Summary:
+{{summary|default:"No summary provided."}}
+
+Generated for id={{id}}

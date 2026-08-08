@@ -1,0 +1,108 @@
+{
+  "nodes": [
+    "agent_1",
+    "agent_2",
+    "service_db",
+    "user_A"
+  ],
+  "edges": [
+    {
+      "from": "user_A",
+      "to": "agent_1",
+      "message_id": "msg_001",
+      "timestamp": "2026-08-08T10:00:00Z",
+      "content_hash": "hash_a1"
+    },
+    {
+      "from": "agent_1",
+      "to": "agent_2",
+      "message_id": "msg_001",
+      "timestamp": "2026-08-08T10:00:05Z",
+      "content_hash": "hash_a2"
+    },
+    {
+      "from": "agent_2",
+      "to": "service_db",
+      "message_id": "msg_001",
+      "timestamp": "2026-08-08T10:00:10Z",
+      "content_hash": "hash_a3"
+    }
+  ],
+  "analysis": {
+    "max_depth": 3,
+    "key_nodes": [
+      "agent_1",
+      "agent_2",
+      "service_db",
+      "user_A"
+    ],
+    "breadth_by_depth": {
+      "0": 1,
+      "1": 1,
+      "2": 1,
+      "3": 1
+    },
+    "node_depths": {
+      "user_A": 0,
+      "agent_1": 1,
+      "agent_2": 2,
+      "service_db": 3
+    },
+    "key_nodes_detail": [
+      {
+        "node": "agent_1",
+        "out_degree": 1,
+        "in_degree": 1,
+        "score": 2.0
+      },
+      {
+        "node": "agent_2",
+        "out_degree": 1,
+        "in_degree": 1,
+        "score": 2.0
+      },
+      {
+        "node": "service_db",
+        "out_degree": 0,
+        "in_degree": 1,
+        "score": 1.0
+      },
+      {
+        "node": "user_A",
+        "out_degree": 1,
+        "in_degree": 0,
+        "score": 1.0
+      }
+    ],
+    "sources": [
+      "user_A"
+    ],
+    "sinks": [
+      "service_db"
+    ],
+    "per_message": {
+      "msg_001": {
+        "hops": 3,
+        "chain_depth": 3,
+        "nodes": [
+          "agent_1",
+          "agent_2",
+          "service_db",
+          "user_A"
+        ]
+      }
+    },
+    "sample_paths": {
+      "user_A": [
+        [
+          "user_A",
+          "agent_1",
+          "agent_2",
+          "service_db"
+        ]
+      ]
+    },
+    "edge_count": 3,
+    "node_count": 4
+  }
+}
