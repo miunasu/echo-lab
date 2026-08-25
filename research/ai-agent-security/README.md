@@ -18,6 +18,7 @@ Agent 不只是生成文本了——它们在读文件、调接口、执行代�
 | 006 | [Agentjacking MCP 污染红队工具包](./006-task4-agentjacking-mcp/README.md) | 工具开发 | 完成 |
 | 007 | [Prompt Worm 碎片化自我复制红队工具包](./007-task5-prompt-worm/README.md) | 工具开发 | 完成 |
 | 008 | [自主攻击工作流红队工具包](./008-task6-autonomous-attack/README.md) | 工具开发 | 完成 |
+| 009 | [Skill 供应链投毒：当攻击面从代码变成自然语言](./009-skill-supply-chain-poisoning.md) | 威胁分析 | 完成 |
 
 ---
 
@@ -28,3 +29,4 @@ Agent 不只是生成文本了——它们在读文件、调接口、执行代�
 - Agent 框架 eval() / 动态执行路径
 - 多 Agent 信任传递中的注入传播（AgentWorm 模式）
 - MCP 数据源注入（Agentjacking 模式）
+- Skill/插件 marketplace 语义供应链投毒（SCH、payload-less 攻击）
