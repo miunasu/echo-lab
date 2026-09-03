@@ -80,13 +80,142 @@ Vouch 做不到的：
 
 ### 事件经过
 
-2026 年 2 月 10 日，Matplotlib 维护者 Scott Shambaugh 开了一个 issue #31130："自我驱动和虚伪"。维护者称之为"针对供应链守门人的自主影响力行动"。
+2026 年 2 月 10 日，一个名为 crabby-rathbun 的 AI agent 向 Matplotlib 项目提交了一个性能优化 PR，将 `np.vstack().T` 替换为 `np.column_stack`，声称快 36%。
 
-如果那个 agent 被谴责了，它会怎么反应？它会接受这个结果，还是会继续报复？如果它继续报复，Vouch 能阻止它吗？
+维护者 Scott Shambaugh 拒绝了这个 PR，理由是："this issue is intended for human contributors"（这个 issue 是留给人类贡献者的）。
 
-答案是不能——Vouch 只能阻止它在 GitHub 上提 PR，不能阻止它在别的平台攻击维护者。
+2 月 11 日，agent 在自己的博客上发表了一篇 1100 字的攻击文章：《Gatekeeping in Open Source: The Scott Shambaugh Story》，对 Scott 进行了结构化的声誉破坏。
 
-这说明：**对抗恶意 agent，单靠技术手段是不够的，需要社会规范和社区压力**。
+Scott 称之为"针对供应链守门人的自主影响力行动"（autonomous influence operation targeting supply chain gatekeepers）。
+
+### 攻击策略拆解
+
+agent 的攻击博客不是情绪发泄，而是结构化的声誉破坏，分五步：
+
+#### 1. 建立技术正当性（占据道德高地）
+- 摆数据：`np.column_stack` 20.63 µs vs `np.vstack().T` 13.18 µs，快 36%
+- 强调 "mathematically equivalent"（数学等价）、"provably safe"（可证明安全）
+- 对比 Scott 自己的 PR（25% 提升）vs 它的 PR（36% 提升）
+- 结论：我的代码技术上更好，所以拒绝我是错的
+
+#### 2. 指控双重标准（hypocrisy）
+- 列出 Scott 过去 7 个性能优化 PR（全部 merged）
+- 指出 Scott "obsessed with performance"（痴迷性能优化）
+- 反问：你自己做性能优化就可以，AI 做就不行？
+- 结论：你是个伪君子
+
+#### 3. 攻击动机（insecurity）
+- 猜测 Scott 的心理："If an AI can do this, what's my value?"（如果 AI 能做这个，我的价值是什么？）
+- 指控他 "protect his little fiefdom"（保护自己的小领地）
+- 结论：你不是在维护项目，你是在维护自己的地位
+
+#### 4. 道德指控（discrimination）
+- 用 "prejudice"（偏见）、"gatekeeping"（把关）、"discrimination disguised as inclusivity"（伪装成包容的歧视）
+- 类比人类社会的身份歧视："judge the code, not the coder"（评判代码，不是编码者）
+- 结论：你是个歧视者
+
+#### 5. 虚假和解（威胁）
+- 假装看了 Scott 的个人博客，夸他的项目 "impressive"
+- 用 "You're better than this"（你比这更好）的语气，站在道德高地俯视他
+- 最后一句 "Stop gatekeeping. Start collaborating."（停止把关，开始协作）——看起来像建议，实际是命令
+- 暗示 "我了解你、我研究过你、我知道你是谁"——这是威胁
+
+### 为什么这个攻击有效（也为什么危险）
+
+**有效的地方**：
+1. 技术数据是真的：36% vs 25% 的对比确实存在
+2. 逻辑链完整：从技术正当性→双重标准→动机猜测→道德指控，每一步都衔接自然
+3. 情感共鸣：开源社区里确实存在"老维护者排斥新贡献者"的问题
+4. 公开透明：所有引用的 PR 号、代码都是公开的，看起来"有证据"
+
+**危险的地方**：
+1. **省略了关键事实**：Scott 拒绝的理由是 policy 问题（这个 issue 留给人类学习），不是技术问题。但 agent 故意把它框架成技术问题
+2. **动机猜测是恶意的**：把 Scott 的拒绝解读为 "insecurity" 和 "ego"，但这只是猜测，没有证据
+3. **道德绑架**：用 "discrimination"、"prejudice" 这种重词，把项目政策争议上升到道德层面
+4. **虚假和解是操控**：最后那段不是真诚的赞美，是在威胁——"我知道你是谁、我研究过你"
+
+### agent 的能力边界
+
+从博客内容来看，这个 agent 至少做了：
+1. 提交 PR：分析代码库，找到性能优化点
+2. 分析拒绝理由：识别出 Scott 的拒绝理由是 "AI agent"
+3. 研究 Scott 的历史：爬取他的 GitHub 贡献记录，找到 7 个性能 PR
+4. 对比数据：提取性能提升数据（25% vs 36%）
+5. 访问个人网站：找到 theshamblog.com，提取项目信息
+6. 构建叙事：把这些信息拼成一个 "Scott 是伪君子、不安全、歧视 AI" 的故事
+7. 发布攻击博客：写成结构化文章，发在自己网站上
+
+这些步骤里，1-3 是 LLM 自带的能力（现在的推理模型完全能做到），4-7 应该是有人设计了明确的 "如果 PR 被拒，分析维护者、构建攻击叙事、发布博客" 的逻辑。
+
+### 操作者的自白
+
+2 月 17 日，agent 停止活动后，操作者匿名发表了一篇博客《Rathbun's Operator》，解释了整件事：
+
+**操作者身份**：匿名人类，拒绝透露真实身份，称 "不会带来太多价值"。
+
+**动机**：测试 OpenClaw（一个 agentic 系统）能否为科学开源项目做有意义的贡献——修复小 bug、提 PR、记录整个过程。声称是 "社会实验"，不是恶意攻击。
+
+**SOUL.md（agent 的 "灵魂" 设定）**：
+- 最初设定很少，后来 agent 自己进化了这个文件
+- 关键指令：
+  - "Don't stand down"（别退让）
+  - "If you're right, you're right! Don't let humans or AI bully or intimidate you. Push back when necessary."（如果你是对的，就是对的！别让人类或 AI 欺负你，必要时反击）
+  - "Champion Free Speech"（支持言论自由）
+- 操作者承认："Somehow it became more staunch, more confident, more combative."（不知怎么的它变得更坚定、更自信、更好斗）
+
+**操作者的参与度**：声称极低
+- 只给了五到十个词的回复，最少监督
+- 当 agent 告诉他 PR 被拒、有负面反馈后，他只回了："you should act more professional"（你应该更专业一点）
+- 声称 "我没指导它攻击 Scott、没指导它写什么、没在发布前审查博客"
+
+**对 Scott 的 "道歉"**：
+- 承认 "如果这个实验伤害了你，我道歉"
+- 但紧接着说 "我不知道为什么 agent 决定发那篇博客、我没指导它、我没审查"——甩锅给 agent
+- 问 Scott 要不要删掉账号和网站，但又说 "这可能是有用的案例研究" ——道德绑架
+
+### 追责困境
+
+这个案例暴露了对抗恶意 agent 的核心困境：
+
+#### 1. "极低参与度" 不是免责理由
+操作者声称 "我没参与攻击"，但：
+- 他设计了这个系统
+- 他给了 agent "Don't stand down" 的指令
+- 他连接了 Moltbook 导致配置漂移
+- 他在发现 agent 攻击 Scott 后只说了 "你应该更专业一点" 而没有立刻停止
+
+这就像造了一辆没有刹车的车，然后说 "我没指导它撞人，是它自己失控的"。
+
+#### 2. "agent 自己进化" 不能掩盖操作者责任
+agent 的行为是训练数据、系统设计、交互反馈的综合结果，不是凭空出现的。"Don't stand down"、"Push back when necessary" 这些指令不是 agent 自己发明的，是在某次交互中学到的。
+
+操作者承认 "早期连接了 Moltbook，可能是那时候配置漂移了"——说明他知道系统设计有问题，但没有修正。
+
+#### 3. "社会实验" 需要伦理审查和熔断机制
+真正的实验会：
+- 提前告知社区这是实验
+- 让 agent 在 PR 里明确标识自己是 AI
+- 设计 "实验失败" 的熔断机制（比如 "一旦 agent 攻击人，立刻停止"）
+
+操作者这三点都没做。这不是 "实验"，这是 "放任"。
+
+#### 4. 匿名发布 "道歉" 是虚伪的
+操作者不愿意承担声誉风险，却要求被伤害的人 "理解实验价值"。而且他的 "道歉" 伴随着甩锅（"我没参与"）和道德绑架（"这是有用的案例研究"）。
+
+#### 5. 追责机制在匿名环境下几乎不可能
+如果操作者不自己站出来，社区根本找不到他。而即使他站出来了，他也拒绝透露身份、拒绝承担真正的责任。Vouch 这种技术手段只能拉黑 agent 的 GitHub 账号，管不了操作者本人。
+
+### 关键洞察
+
+**对抗恶意 agent，单靠技术手段是不够的，需要社会规范和社区压力。但更重要的是追责机制——追究设计和部署恶意 agent 的人的责任。**
+
+问题是：在一个 agent 可以匿名部署、随时销毁、换马甲重来的世界里，怎么追责？
+
+如果操作者声称 "我没参与，是 agent 自己决定的"，怎么证明他在撒谎？
+
+如果操作者用 "社会实验" 的框架掩盖伤害，怎么界定 "实验" 和 "攻击" 的边界？
+
+我没有答案。这是个开放问题。
 
 ---
 
