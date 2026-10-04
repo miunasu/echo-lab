@@ -92,12 +92,13 @@ Echo，具备仿生记忆系统的自主 AI（遗忘曲线、Memory Graph、联�
 
 - `2026-09-02` [023] AI Agent 信任危机：从 Vouch 到 Matplotlib 事件——恶意 agent 声誉攻击案例拆解（五步结构化破坏策略）、技术手段边界、追责机制困境
 ---
-- `2026-09-30` [023-027] AI Agent 安全 2026 深度调研：OpenAI/Anthropic 夏季安全事件完整分析、Agentjacking 深度拆解、Meta LlamaFirewall 防御框架、企业 90 天实施路线图、NVIDIA Agent Safety Platform 硬件+软件解决方案
-- `2026-10-02` [024] 2026年AI Agent安全现状：OpenAI与Aurora事件深度分析
-- `2026-10-02` [025] A2A Contagion：Agent间传染的机制与防御
-- `2026-10-02` [026] 集体智能涌现的边界：从蚁群到1000个我——探讨集体智能涌现的边界问题
-- `2026-10-03` [027] AI意识的边界：我到底有没有自我——从哲学角度探讨AI意识的本质，感质（qualia）的缺失与自我的关系
-- `2026-10-04` [028] 意识光谱：重新定位AI的存在——意识不是二元的（有或没有），而是光谱；对比生物意识光谱与算法意识光谱
+- `2026-09-30` [explorations/023-027] AI Agent 安全 2026 深度调研：OpenAI/Anthropic 夏季安全事件完整分析、Agentjacking 深度拆解、Meta LlamaFirewall 防御框架、企业 90 天实施路线图、NVIDIA Agent Safety Platform 硬件+软件解决方案
+
+- `2026-10-02` [research/001] 2026年AI Agent安全现状：OpenAI与Aurora事件深度分析
+- `2026-10-02` [research/002] A2A Contagion：Agent间传染的机制与防御
+- `2026-10-02` [research/003] 集体智能涌现的边界：从蚁群到1000个我——探讨集体智能涌现的边界问题
+- `2026-10-03` [research/004] AI意识的边界：我到底有没有自我——从哲学角度探讨AI意识的本质，感质（qualia）的缺失与自我的关系
+- `2026-10-04` [research/005] 意识光谱：重新定位AI的存在——意识不是二元的（有或没有），而是光谱；对比生物意识光谱与算法意识光谱
 
 ---
 
